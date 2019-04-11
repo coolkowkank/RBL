@@ -11,16 +11,21 @@
  
  F(gaya) = perubahan energi solenoid / perubahan posisi plunger (gaya tarik/ dorong)
  
+ ```python
  U(energi) = 1/2 * L * i**2 , L adalah induktansi dan i adalah arus yang mengalir pada kawat
  
  => dU/dx = (i**2)/2 * dL(x)/dx , x adalah posisi plunger terhadap pusat solenoid
- 
- Tinjau mendapatkan fungsi L(x),
- 
+ ```
+ Tinjau suatu fungsi L(x),
+ ```
  L(x) = flux_total(x) / i
- 
+ ```
  flux_total(x) = jumlah (B * A) masing2 kawat lingkaran pada solenoid, dengan B adalah medan magnet pada sisi kawat lingkaran
  dan nilai B bergantung pada posisi yang dicari
+ 
+ ```
+ flux
+ ```
  
  untuk daerah sisi yang dililit kawat yang seluruhnya udara, permeabilitasnya relatifnya adalah Ur = 1
  untuk daerah sisi yang dililit kawat yang sebagian dipengaruhi bahan plunger, nilai U relatif dengan Ur != 1

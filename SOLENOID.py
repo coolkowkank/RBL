@@ -85,11 +85,14 @@ def jarak_pusat(N, no_lilitan, no_layer) : # jarak lilitan ke i dari pusat, no_l
     return posisi_yang_dicari
 
 def B_total(N, no_lilitan) : # Nilai B pada no_lilitan ( posisi lilitan dari pusat ) dengan konfigurasi N
+    
     y = 0
     
     jarak_dicari = jarak_pusat(N,no_lilitan,0)
 
     for i in range(len(N)) : # pada layer i+1
+        if N[i] == 0 : #berhenti jika tidak ada lilitan pada layer selanjutnya
+            break
         for j in range(N[i]//2) : # pada lilitan ke-j
             jarak_lilitan_ke_pusat = jarak_pusat(N, j, i) # jarak lilitan ke-j dari pusat
             z = jarak_dicari - jarak_lilitan_ke_pusat #untuk posisi B (yang dicari) dan lilitan j di bagian yang sama relatif terhadap pusat
@@ -100,13 +103,15 @@ def B_total(N, no_lilitan) : # Nilai B pada no_lilitan ( posisi lilitan dari pus
             y -= B(N, jarak_dicari ,i)
     return y
 
+# ================ masih progress
+
+def flux(N,z) : # flux(dengan luas A) di posisi z dari pusat, pada kombinasi N
+    # note : z dihitung berdasarkan selisih jumlah lilitan dari pusat
+    global Ap, R
+    
+
 def L(N, x) : #induktansi saat plunger berjarak x dari pusat
     global Ro, Ap
     Ao = pi * Ro**2
-
-# .
-# .
-# .
-# .
-# ...... MASIH DALAM PROGRESS
+    B_total
     

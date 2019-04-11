@@ -7,6 +7,51 @@
 2. Tidak ada faktor temperatur pada hambatan
 3. Solenoid dianggap kumpulan kawat lingkaran berarus listrik
 
+# Sistem Kombinasi
+Jadi gini, 
+```python
+N = [0 for i in range(800)] # kombinasi : N[a] = b , berarti pada layer ke-a+1 ada b lilitan
+```
+Nomor index dari N menunjukkan nomor layer
+No Layer = 0, 1, 2, 3 ,4 , ..... 
+
+Nilai N pada index ke-i menunjukkan jumlah lilitan pada index ke-i
+
+```python
+def run(a) : # memvariasikan kombinasi
+    a[0] += 1
+    try :
+        while a[0] > 5 :
+            for i in range(len(a)) :
+                if a[i] > 5 :
+                    a[0 : i + 2] = [a[i+1] + 1 for j in range(len(a[0 : i + 2]))]      
+
+```
+Fungsi tersebut berfungsi untuk mengubah kombinasi array N.
+
+Contoh :
+```python
+N = [1,2,3, 0,0,0,0] # Kombinasi awal
+run(N)
+print(N)
+```
+Output :
+```python
+[2,2,3,0,0,0,0] # perhatikan nilai index ke-0
+```
+Notice, nilai maksimal pada masing-masing indeks adalah 1000.
+jika ada indeks yang bernilai > 1000, maka indeks setelahnya ditambahkan 1 dan indeks yang >1000 tereduksi sesuai nilai indeks berikutnya.
+
+contoh :
+```python
+N = [1000,5,3, 0,0,0,0] # Kombinasi awal
+run(N)
+print(N)
+```
+output :
+```python
+[6,6,3,0,0,0,0] # nilai indeks ke-0 tidak menjadi 1, karena lilitan ke-n tidak mungkin < lilitan ke-(n+1)
+```
 # Metode Perhitungan
  
  Gaya = perubahan energi solenoid / perubahan posisi plunger (gaya tarik/ dorong) = dU(x)/dx

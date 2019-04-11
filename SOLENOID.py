@@ -2,12 +2,12 @@
 # 1. Mencari besar gaya sesaat dari solenoid actuator berdasarkan posisi plunger terhadap solenoid
 # 2. Mencari kombinasi jumlah lilitan pada masing-masing layer solenoid agar didapat actuator yang efisien
 
-# import tools
+# ========== MODULES =============
 import matplotlib.pyplot as plt
 import numpy as np
 from sympy import *
 
-#==== KONSTANTA =========
+#============ KONSTANTA ============
 Up = 1.32 * 10**-6 # permeabilitas neodimium (CONTOH aja)
 V = 9 #volt baterai
 r_plunger = 1.5 * 10**-2 # jari jari plunger
@@ -19,7 +19,7 @@ R = [Ro + i * r_kawat for i in range(20)] # jari-jari solenoid
 Uo = 4 * pi * 10**-7 # nyu nol
 A_kawat = pi * r_kawat**2 # luas penampang kawat
 
-# ============== FUNGSI ===========
+# ============= FUNGSI ===========
 # Kamus
 # N = array kombinasi
 N = [0 for i in range(800)] # kombinasi : N[a] = b , berarti pada layer ke-a+1 ada b lilitan

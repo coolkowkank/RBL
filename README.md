@@ -9,7 +9,7 @@
 
 # Metode Perhitungan
  
- Gaya = perubahan energi solenoid / perubahan posisi plunger (gaya tarik/ dorong) = dU(x)/dx
+ Gaya = perubahan energi solenoid / perubahan posisi plunger = dU(x)/dx
  
  ```python
  U(energi) = 1/2 * L * i**2 , L adalah induktansi dan i adalah arus yang mengalir pada kawat

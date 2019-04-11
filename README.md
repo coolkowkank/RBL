@@ -21,9 +21,9 @@ Nilai N pada index ke-i menunjukkan jumlah lilitan pada index ke-i
 def run(a) : # memvariasikan kombinasi
     a[0] += 1
     try :
-        while a[0] > 5 :
+        while a[0] > 1000 :
             for i in range(len(a)) :
-                if a[i] > 5 :
+                if a[i] > 1000 :
                     a[0 : i + 2] = [a[i+1] + 1 for j in range(len(a[0 : i + 2]))]      
 
 ```
@@ -31,26 +31,26 @@ Fungsi tersebut berfungsi untuk mengubah kombinasi array N.
 
 Contoh :
 ```python
-N = [1,2,3, 0,0,0,0] # Kombinasi awal
+N = [1,2,3,0,0,0,0, ......] # Kombinasi awal
 run(N)
 print(N)
 ```
 Output :
 ```python
-[2,2,3,0,0,0,0] # perhatikan nilai index ke-0
+[2,2,3,0,0,0,0, ........] # perhatikan nilai index ke-0
 ```
 Notice, nilai maksimal pada masing-masing indeks adalah 1000.
 jika ada indeks yang bernilai > 1000, maka indeks setelahnya ditambahkan 1 dan indeks yang >1000 tereduksi sesuai nilai indeks berikutnya.
 
 contoh :
 ```python
-N = [1000,5,3, 0,0,0,0] # Kombinasi awal
+N = [1000,5,3,0,0,0,0, ..........] # Kombinasi awal
 run(N)
 print(N)
 ```
 output :
 ```python
-[6,6,3,0,0,0,0] # nilai indeks ke-0 tidak menjadi 1, karena lilitan ke-n tidak mungkin < lilitan ke-(n+1)
+[6,6,3,0,0,0,0, .........] # nilai indeks ke-0 tidak menjadi 1, karena lilitan ke-n tidak mungkin < lilitan ke-(n+1)
 ```
 # Metode Perhitungan
  

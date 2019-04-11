@@ -111,7 +111,7 @@ def flux(N,z,no_layer,x) : # flux(dengan luas A) di posisi z, pada kombinasi N d
     if z < x :
         A_gap_udara = pi * R[no_layer]**2
         y = B_total(N,z) * A_gap_udara
-    elif z > x :
+    elif z >= x :
         Ao = pi * R[no_layer]**2
         A_gap_udara = Ao - Ap
         y = B(N,z) * (Ap * Up +Ao)

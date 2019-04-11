@@ -86,23 +86,19 @@ def jarak_pusat(N, no_lilitan, no_layer) : # jarak lilitan ke i dari pusat, no_l
         posisi_yang_dicari = no_lilitan * 2 * pi * r_kawat
     return posisi_yang_dicari
 
-def B_total(N, z) : # Nilai B total pada jarak z dari pusat, dengan konfigurasi N
-    
+def B_total(N, z) :
     y = 0
-    
-    jarak_dicari = z
-
-    for i in range(len(N)) : # pada layer i+1
-        if N[i] == 0 : #berhenti jika tidak ada lilitan pada layer selanjutnya
+    for i in range(len(N)) :
+        if N[i] == 0 :
             break
-        for j in range(N[i]//2) : # pada lilitan ke-j
-            jarak_lilitan_ke_pusat = jarak_pusat(N, j, i) # jarak lilitan ke-j dari pusat
-            z = jarak_dicari - jarak_lilitan_ke_pusat #untuk posisi B (yang dicari) dan lilitan j di bagian yang sama relatif terhadap pusat
-            z_sebelah = jarak_dicari + jarak_pusat # untuk posisi B berbeda
-            y += B(N,z, i) # B akibat lilitan pada jarak z
-            y += B(N,z_sebelah, i) # B akibat lilitan pada jarak z_sebelah
-        if N[i] % 2 != 0 : #untuk kasus ganjil, pada posisi tengah terhitung dua kali
-            y -= B(N, jarak_dicari ,i)
+        for j in range(N[i]) :
+            if N[i]%2 != 0 : #kasus ganjil
+                xo = -(N[i]//2 *2 * r_kawat)
+            elif N[i]%2 == 0 : #kasus genap
+                xo  = -((N[i]/2 -0.5) *2 *r_kawat)
+            x = xo + j*2*r_kawat
+            selisih_jarak = x - z
+            y += B(N, selisih_jarak, i)
     return y
 
 def flux(N,z,no_layer,x) : # flux(dengan luas A) di posisi z, pada kombinasi N dan plunger di x 

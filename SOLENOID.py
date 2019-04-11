@@ -127,10 +127,5 @@ def flux_total(N,x) : #flux total pada konfigurasi N, ketika plunger berjarak x 
             y += flux(N,z,i,x)
     return y
     
-# di bawah ini masih on progress
-
 def L(N, x) : #induktansi saat plunger berjarak x dari pusat
-    global Ro, Ap
-    Ao = pi * Ro**2
-    B_total
-    
+    return flux_total(N,x) / I_arus(N)

@@ -1,7 +1,13 @@
+# ********************************** DESKRIPSI SINGKAT *********************
 # ========== TUJUAN =============
 # 1. Mencari besar gaya sesaat dari solenoid actuator berdasarkan posisi plunger terhadap solenoid
 # 2. Mencari kombinasi jumlah lilitan pada masing-masing layer solenoid agar didapat actuator yang efisien
-
+#
+# ========= ASUMSI ==============
+# 1. Pada kawat lingkaran berarus, semua titik pada sisi permukaan lingkaran memiliki nilai B/u yang sama
+# 2. Tidak ada faktor temperatur pada hambatan
+# 3. Solenoid dianggap kumpulan kawat lingkaran berarus listrik
+# *************************************** PROGRAM **********************************
 # ========== MODULES =============
 import matplotlib.pyplot as plt
 import numpy as np

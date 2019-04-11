@@ -32,6 +32,8 @@ A_kawat = pi * r_kawat**2 # luas penampang kawat
 # N = array kombinasi
 N = [0 for i in range(800)] # kombinasi : N[a] = b , berarti pada layer ke-a+1 ada b lilitan
 
+N = [0 for i in range(10)] # kombinasi : N[a] = b , berarti pada layer ke-a+1 ada b lilitan
+
 def run(a) : # memvariasikan kombinasi
     a[0] += 1
     try :

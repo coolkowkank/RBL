@@ -53,7 +53,7 @@ def l(N): # panjang kawat
         y += R[i] * N[i]
     return 2 * pi * y
 
-def R(N): # hambatan
+def R_hambatan(N): # hambatan
     global resistivity, A_kawat
     y = resistivity * l(N) / A_kawat
     return y
@@ -63,15 +63,16 @@ def l_sol(N,no_layer): #panjang solenoid pada layer tertentu
     return y
 
 def A_sol(no_layer): # luas solenoid pada layer tertentu
-    y = pi * R[no_layer]**2
+    global R
+    y = float(pi) * R[no_layer]**2
     return y
 
 def I_arus(N,t = 'tunak') : # arus listrik
     global V
     if t == "tunak" :
-        return V/R(N)
+        return V/R_hambatan(N)
     else :
-        return V/R(N) * (1 - np.e**(-t*R(N)/L(N)))
+        return V/R_hambatan(N) * (1 - np.e**(-t*R(N)/L(N)))
 
 def B(N,z,no_layer,t = 'tunak') : # medan pada jarak z dari kawat lingkaran
     # no_layer menentukan jari2
@@ -156,3 +157,4 @@ def U(N,x) :
 def F(N,x,dx = 0.0001) :
     y = U(N,x) - U(N, x+dx)
     return y/dx
+    

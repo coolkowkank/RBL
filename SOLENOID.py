@@ -28,6 +28,7 @@ A_kawat = pi * r_kawat**2 # luas penampang kawat
 
 # ============= FUNGSI ===========
 # Kamus
+# no_layer = 0, 1, 2, 3, 4, ....
 # N = array kombinasi
 N = [0 for i in range(800)] # kombinasi : N[a] = b , berarti pada layer ke-a+1 ada b lilitan
 
@@ -58,14 +59,14 @@ def R(N): # hambatan
     return y
 
 def l_sol(N,no_layer): #panjang solenoid pada layer tertentu
-    y = N[no_layer - 1] * r_kawat * 2
+    y = N[no_layer] * r_kawat * 2
     return y
 
 def A_sol(no_layer): # luas solenoid pada layer tertentu
-    y = pi * R[no_layer - 1 ]**2
+    y = pi * R[no_layer]**2
     return y
 
-def I_arus(N,t) : # arus listrik
+def I_arus(N,t = 'tunak') : # arus listrik
     global V
     if t == "tunak" :
         return V/R(N)
@@ -86,7 +87,26 @@ def jarak_pusat(N, no_lilitan, no_layer) : # jarak lilitan ke i dari pusat, no_l
         posisi_yang_dicari = no_lilitan * 2 * pi * r_kawat
     return posisi_yang_dicari
 
-def B_total(N, z) :
+# def B_total(N, z) : # Nilai B total pada jarak z dari pusat, dengan konfigurasi N
+    
+#     y = 0
+    
+#     jarak_dicari = z
+
+#     for i in range(len(N)) : # pada layer i+1
+#         if N[i] == 0 : #berhenti jika tidak ada lilitan pada layer selanjutnya
+#             break
+#         for j in range(N[i]//2) : # pada lilitan ke-j
+#             jarak_lilitan_ke_pusat = jarak_pusat(N, j, i) # jarak lilitan ke-j dari pusat
+#             z = jarak_dicari - jarak_lilitan_ke_pusat #untuk posisi B (yang dicari) dan lilitan j di bagian yang sama relatif terhadap pusat
+#             z_sebelah = jarak_dicari + jarak_pusat # untuk posisi B berbeda
+#             y += B(N,z, i) # B akibat lilitan pada jarak z
+#             y += B(N,z_sebelah, i) # B akibat lilitan pada jarak z_sebelah
+#         if N[i] % 2 != 0 : #untuk kasus ganjil, pada posisi tengah terhitung dua kali
+#             y -= B(N, jarak_dicari ,i)
+#     return y
+
+def B_total(N, z) : # Nilai B total pada jarak z dari pusat, dengan konfigurasi N
     y = 0
     for i in range(len(N)) :
         if N[i] == 0 :
@@ -105,7 +125,7 @@ def flux(N,z,no_layer,x) : # flux(dengan luas A) di posisi z, pada kombinasi N d
     # note : z dihitung berdasarkan jarak lilitan dari pusat
     global Ap, R, Up
     if z < x :
-        A_gap_udara = pi * R[no_layer]**2
+        A_gap_udara = A_sol(no_layer)
         y = B_total(N,z) * A_gap_udara
     elif z >= x :
         Ao = pi * R[no_layer]**2
@@ -126,6 +146,13 @@ def flux_total(N,x) : #flux total pada konfigurasi N, ketika plunger berjarak x 
             z = Zo + j * 2 * r_kawat 
             y += flux(N,z,i,x)
     return y
-    
+
 def L(N, x) : #induktansi saat plunger berjarak x dari pusat
     return flux_total(N,x) / I_arus(N)
+
+def U(N,x) :
+    return (L(N,x) * I_arus(N)**2)/2
+
+def F(N,x,dx = 0.0001) :
+    y = U(N,x) - U(N, x+dx)
+    return y/dx

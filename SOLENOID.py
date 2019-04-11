@@ -1,3 +1,7 @@
+# ========== TUJUAN =============
+# 1. Mencari besar gaya sesaat dari solenoid actuator berdasarkan posisi plunger terhadap solenoid
+# 2. Mencari kombinasi jumlah lilitan pada masing-masing layer solenoid agar didapat actuator yang efisien
+
 # import tools
 import matplotlib.pyplot as plt
 import numpy as np
@@ -93,5 +97,9 @@ def L(N, x) : #induktansi saat plunger berjarak x dari pusat
     global Ro, Ap
     Ao = pi * Ro**2
 
-# MASIH DALAM PROGRESS
+# .
+# .
+# .
+# .
+# ...... MASIH DALAM PROGRESS
     

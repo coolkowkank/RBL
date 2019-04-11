@@ -25,13 +25,12 @@ Ro = 1.6 * 10**-2 # m
 R = [Ro + i * r_kawat for i in range(20)] # jari-jari solenoid
 Uo = 4 * pi * 10**-7 # nyu nol
 A_kawat = pi * r_kawat**2 # luas penampang kawat
+R_batt = 1 #ohm
 
 # ============= FUNGSI ===========
 # Kamus
 # no_layer = 0, 1, 2, 3, 4, ....
 # N = array kombinasi
-N = [0 for i in range(800)] # kombinasi : N[a] = b , berarti pada layer ke-a+1 ada b lilitan
-
 N = [0 for i in range(10)] # kombinasi : N[a] = b , berarti pada layer ke-a+1 ada b lilitan
 
 def run(a) : # memvariasikan kombinasi
@@ -56,9 +55,10 @@ def l(N): # panjang kawat
     return 2 * pi * y
 
 def R_hambatan(N): # hambatan
+    global R_batt
     global resistivity, A_kawat
     y = resistivity * l(N) / A_kawat
-    return y
+    return y + R_batt
 
 def l_sol(N,no_layer): #panjang solenoid pada layer tertentu
     y = N[no_layer] * r_kawat * 2
@@ -66,7 +66,7 @@ def l_sol(N,no_layer): #panjang solenoid pada layer tertentu
 
 def A_sol(no_layer): # luas solenoid pada layer tertentu
     global R
-    y = float(pi) * R[no_layer]**2
+    y = pi * R[no_layer]**2
     return y
 
 def I_arus(N,t = 'tunak') : # arus listrik

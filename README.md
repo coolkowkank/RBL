@@ -33,7 +33,7 @@
  maka pada daerah yang dipengaruhi plunger, flux pada permukaan kawat adalah
  
  ```python
- flux = B ( Ap * Ur + (Ao - Ap) )
+ flux = B * ( Ap * Ur + (Ao - Ap) )
  ```
  dengan Ap, Ao, dan Ur masing2 adalah luas permukaan plunger, permukaan gap-udara dengan plunger, 
  permeabilitas relatif

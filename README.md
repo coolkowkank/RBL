@@ -36,4 +36,4 @@
  
  dan kemudian didapat besar gaya F terhadap untuk setiap posisi plunger x pada pusat solenoid
  
- Untuk perhitungan numerik, digunakan komputer dengan bahasa pemrograman Python di [SOLENOID.py](sini)
+ Untuk perhitungan numerik, digunakan komputer dengan bahasa pemrograman Python di [SOLENOID.py](https://github.com/coolkowkank/RBL/blob/master/SOLENOID.py)

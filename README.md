@@ -3,9 +3,10 @@
 2. Mencari kombinasi jumlah lilitan pada masing-masing layer solenoid agar didapat actuator yang efisien
 
 # ASUMSI
-1. Pada kawat lingkaran berarus, semua titik pada sisi permukaan lingkaran memiliki nilai B/u yang sama
-2. Tidak ada faktor temperatur pada hambatan
-3. Solenoid dianggap kumpulan kawat lingkaran berarus listrik
+1. Permeabilitas relatif plunger (magnet dan kawannya) sudah diketahui
+2. Pada kawat lingkaran berarus, semua titik pada sisi permukaan lingkaran memiliki nilai B/u yang sama
+3. Tidak ada faktor temperatur pada hambatan
+4. Solenoid dianggap kumpulan kawat lingkaran berarus listrik
 
 # Metode Perhitungan
  

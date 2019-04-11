@@ -47,6 +47,8 @@ def l(N): # panjang kawat
     global R
     y = 0
     for i in range(len(N)):
+        if N[i] == 0 :
+            break
         y += R[i] * N[i]
     return 2 * pi * y
 

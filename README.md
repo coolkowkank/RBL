@@ -51,7 +51,8 @@ Jadi gini,
 ```python
 N = [0 for i in range(800)] # kombinasi : N[a] = b , berarti pada layer ke-a+1 ada b lilitan
 ```
-Nomor index dari N menunjukkan nomor layer
+Nomor index dari N menunjukkan nomor layer.
+
 No Layer = 0, 1, 2, 3 ,4 , ..... 
 
 Nilai N pada index ke-i menunjukkan jumlah lilitan pada index ke-i

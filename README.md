@@ -7,7 +7,46 @@
 2. Tidak ada faktor temperatur pada hambatan
 3. Solenoid dianggap kumpulan kawat lingkaran berarus listrik
 
-# Sistem Kombinasi
+# Metode Perhitungan
+ 
+ Gaya = perubahan energi solenoid / perubahan posisi plunger (gaya tarik/ dorong) = dU(x)/dx
+ 
+ ```python
+ U(energi) = 1/2 * L * i**2 , L adalah induktansi dan i adalah arus yang mengalir pada kawat
+ 
+ => dU/dx = (i**2)/2 * dL(x)/dx , x adalah posisi plunger terhadap pusat solenoid
+ ```
+ Tinjau suatu fungsi L(x),
+ ```python
+ L(x) = flux_total(x) / i
+ ```
+ flux_total(x) = jumlah (B * A) masing2 kawat lingkaran pada solenoid, dengan B adalah medan magnet pada sisi kawat lingkaran
+ dan nilai B bergantung pada posisi yang dicari
+ 
+ ``` python
+ flux_total(x) = jumlah masing2 flux untuk tiap kawat lingkaran
+ ```
+ 
+ untuk daerah sisi yang dililit kawat yang seluruhnya udara, permeabilitasnya relatifnya adalah Ur = 1
+ untuk daerah sisi yang dililit kawat yang sebagian dipengaruhi bahan plunger, nilai U relatif dengan Ur != 1
+ 
+ maka pada daerah yang dipengaruhi plunger, flux pada permukaan kawat adalah
+ 
+ ```python
+ flux = B ( Ap * Ur + (Ao - Ap) )
+ ```
+ dengan Ap, Ao, dan Ur masing2 adalah luas permukaan plunger, permukaan gap-udara dengan plunger, 
+ permeabilitas relatif
+ 
+ sehingga dapat dicari energi yang tersimpan pada solenoid ketika plunger berjarak x dari pusat solenoid
+ 
+ maka dapat ditentukan aproksimasi untuk dU(x) / dx
+ 
+ dan kemudian didapat besar gaya F terhadap untuk setiap posisi plunger x pada pusat solenoid
+ 
+ Untuk perhitungan numerik, digunakan komputer dengan bahasa pemrograman Python di [SOLENOID.py](https://github.com/coolkowkank/RBL/blob/master/SOLENOID.py)
+ 
+ # Sistem Kombinasi
 Jadi gini, 
 ```python
 N = [0 for i in range(800)] # kombinasi : N[a] = b , berarti pada layer ke-a+1 ada b lilitan
@@ -50,43 +89,7 @@ print(N)
 ```
 output :
 ```python
-[6,6,3,0,0,0,0, .........] # nilai indeks ke-0 tidak menjadi 1, karena lilitan ke-n tidak mungkin < lilitan ke-(n+1)
+[6,6,3,0,0,0,0, .........] # perhatikan nilai indeks ke-0
 ```
-# Metode Perhitungan
- 
- Gaya = perubahan energi solenoid / perubahan posisi plunger (gaya tarik/ dorong) = dU(x)/dx
- 
- ```python
- U(energi) = 1/2 * L * i**2 , L adalah induktansi dan i adalah arus yang mengalir pada kawat
- 
- => dU/dx = (i**2)/2 * dL(x)/dx , x adalah posisi plunger terhadap pusat solenoid
- ```
- Tinjau suatu fungsi L(x),
- ```python
- L(x) = flux_total(x) / i
- ```
- flux_total(x) = jumlah (B * A) masing2 kawat lingkaran pada solenoid, dengan B adalah medan magnet pada sisi kawat lingkaran
- dan nilai B bergantung pada posisi yang dicari
- 
- ``` python
- flux_total(x) = jumlah masing2 flux untuk tiap kawat lingkaran
- ```
- 
- untuk daerah sisi yang dililit kawat yang seluruhnya udara, permeabilitasnya relatifnya adalah Ur = 1
- untuk daerah sisi yang dililit kawat yang sebagian dipengaruhi bahan plunger, nilai U relatif dengan Ur != 1
- 
- maka pada daerah yang dipengaruhi plunger, flux pada permukaan kawat adalah
- 
- ```python
- flux = B ( Ap * Ur + (Ao - Ap) )
- ```
- dengan Ap, Ao, dan Ur masing2 adalah luas permukaan plunger, permukaan gap-udara dengan plunger, 
- permeabilitas relatif
- 
- sehingga dapat dicari energi yang tersimpan pada solenoid ketika plunger berjarak x dari pusat solenoid
- 
- maka dapat ditentukan aproksimasi untuk dU(x) / dx
- 
- dan kemudian didapat besar gaya F terhadap untuk setiap posisi plunger x pada pusat solenoid
- 
- Untuk perhitungan numerik, digunakan komputer dengan bahasa pemrograman Python di [SOLENOID.py](https://github.com/coolkowkank/RBL/blob/master/SOLENOID.py)
+nilai indeks ke-0 tidak menjadi 1, karena lilitan ke-n tidak mungkin < lilitan ke-(n+1)
+

@@ -73,7 +73,7 @@ def I_arus(N,t) : # arus listrik
         return V/R(N) * (1 - np.e**(-t*R(N)/L(N)))
 
 def B(N,z,no_layer,t = 'tunak') : # medan pada jarak z dari kawat lingkaran
-    # no layer menentukan jari2
+    # no_layer menentukan jari2
     global Uo, R 
     denominator = 2 * (R[no_layer]**2 + z**2)**(3/2)
     y = Uo * I_arus(N,t) * R[no_layer]**2 / (denominator)
@@ -105,12 +105,33 @@ def B_total(N, z) : # Nilai B total pada jarak z dari pusat, dengan konfigurasi 
             y -= B(N, jarak_dicari ,i)
     return y
 
-# ================ masih progress
+def flux(N,z,no_layer,x) : # flux(dengan luas A) di posisi z, pada kombinasi N dan plunger di x 
+    # note : z dihitung berdasarkan jarak lilitan dari pusat
+    global Ap, R, Up
+    if z < x :
+        A_gap_udara = pi * R[no_layer]**2
+        y = B_total(N,z) * A_gap_udara
+    elif z > x :
+        Ao = pi * R[no_layer]**2
+        A_gap_udara = Ao - Ap
+        y = B(N,z) * (Ap * Up +Ao)
+    return y
 
-def flux(N,z) : # flux(dengan luas A) di posisi z dari pusat, pada kombinasi N
-    # note : z dihitung berdasarkan selisih jumlah lilitan dari pusat
-    global Ap, R
+def flux_total(N,x) : #flux total pada konfigurasi N, ketika plunger berjarak x dari pusat
+    y = 0
+    for i in range(len(N)) : # kalkulasi pada layer i, sebanyak jumlah layer
+        if N[i] == 0 :
+            break
+        for j in range(N[i]) : # kalkulasi pada layer i, sebanyak jumlah lilitan
+            if N[i]%2 != 0 : #kasus ganjil
+                Zo = -(N[i]//2 *2 * r_kawat)
+            elif N[i]%2 == 0 : #kasus genap
+                Zo  = -((N[i]/2 -0.5) *2 *r_kawat)
+            z = Zo + j * 2 * r_kawat 
+            y += flux(N,z,i,x)
+    return y
     
+# di bawah ini masih on progress
 
 def L(N, x) : #induktansi saat plunger berjarak x dari pusat
     global Ro, Ap

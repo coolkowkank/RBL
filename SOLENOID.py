@@ -35,9 +35,9 @@ N = [0 for i in range(800)] # kombinasi : N[a] = b , berarti pada layer ke-a+1 a
 def run(a) : # memvariasikan kombinasi
     a[0] += 1
     try :
-        while a[0] > 5 :
+        while a[0] > 1000 :
             for i in range(len(a)) :
-                if a[i] > 5 :
+                if a[i] > 1000 :
                     a[0 : i + 2] = [a[i+1] + 1 for j in range(len(a[0 : i + 2]))]                 
     except :
         print("selesai")

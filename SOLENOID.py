@@ -15,14 +15,14 @@ import numpy as np
 from sympy import *
 
 #============ KONSTANTA ============
-Up = 1.32 * 10**-6 # permeabilitas neodimium (CONTOH aja)
-n = 2
+Up = 1.05 # permeabilitas neodimium (CONTOH aja)
+n = 5
 V = 9*n #volt baterai
-r_plunger = 1.5 * 10**-2 # jari jari plunger
-Ap = pi * r_plunger**2 # luas penampang plunger
-r_kawat = 0.5/2 * 10**-3 # m
+r_plunger = 1.5 * 10**-2 # jari jari plunger (m)
+Ap = pi * r_plunger**2 # luas penampang plunger (m^2)
+r_kawat = 0.5/2 * 10**-3 # (m)
 resistivity = 1.68 * 10**-8 # ohm m
-Ro = 1.5 * 10**-2 # m
+Ro = 1.7 * 10**-2 # m
 R = [Ro + i * r_kawat for i in range(20)] # jari-jari solenoid
 Uo = 4 * pi * 10**-7 # nyu nol
 A_kawat = pi * r_kawat**2 # luas penampang kawat

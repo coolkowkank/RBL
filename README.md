@@ -101,7 +101,7 @@ nilai indeks ke-0 tidak menjadi 1, karena lilitan ke-n tidak mungkin < lilitan k
  
 ```python
 def jumlah_kombinasi(x,y) : 
-# mencari jumlah kombinasi maksimum jika lilitan maksimum per layer 
+# mencari jumlah kombinasi yang mungkin, jika lilitan maksimum per layer 
 # adalah x, dan jumlah layer maksimum adalah y
     a = [0 for i in range(y)]
     y = 0

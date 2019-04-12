@@ -16,16 +16,17 @@ from sympy import *
 
 #============ KONSTANTA ============
 Up = 1.32 * 10**-6 # permeabilitas neodimium (CONTOH aja)
-V = 9 #volt baterai
+n = 2
+V = 9*n #volt baterai
 r_plunger = 1.5 * 10**-2 # jari jari plunger
 Ap = pi * r_plunger**2 # luas penampang plunger
 r_kawat = 0.5/2 * 10**-3 # m
 resistivity = 1.68 * 10**-8 # ohm m
-Ro = 1.6 * 10**-2 # m
+Ro = 1.5 * 10**-2 # m
 R = [Ro + i * r_kawat for i in range(20)] # jari-jari solenoid
 Uo = 4 * pi * 10**-7 # nyu nol
 A_kawat = pi * r_kawat**2 # luas penampang kawat
-R_batt = 1 #ohm
+R_batt = n # asumsi hambatan dalam baterai 1 ohm/baterai
 
 # ============= FUNGSI ===========
 # Kamus
@@ -36,14 +37,29 @@ N = [0 for i in range(10)] # kombinasi : N[a] = b , berarti pada layer ke-a+1 ad
 def run(a) : # memvariasikan kombinasi
     a[0] += 1
     try :
-        while a[0] > 1000 :
+        while a[0] > 150 :
             for i in range(len(a)) :
-                if a[i] > 1000 :
+                if a[i] > 150 :
                     a[0 : i + 2] = [a[i+1] + 1 for j in range(len(a[0 : i + 2]))]                 
     except :
         print("selesai")
         return;
     return a
+
+def jumlah_kombinasi(x) : # mencari jumlah kombinasi maksimum jika lilitan maksimum per layer adalah x
+    a = [0,0,0]
+    y = 0
+    while True :
+        a[0] += 1
+        try :
+            while a[0] > x :
+                for i in range(len(a)) :
+                    if a[i] > x :
+                        a[0 : i + 2] = [a[i+1] + 1 for j in range(len(a[0 : i + 2]))]                 
+        except :
+            print(y)
+            break
+        y += 1       
 
 def l(N): # panjang kawat
     global R
@@ -89,25 +105,6 @@ def jarak_pusat(N, no_lilitan, no_layer) : # jarak lilitan ke i dari pusat, no_l
     elif N[no_layer] % 2 != 0 : #kasus ganjil
         posisi_yang_dicari = no_lilitan * 2 * pi * r_kawat
     return posisi_yang_dicari
-
-# def B_total(N, z) : # Nilai B total pada jarak z dari pusat, dengan konfigurasi N
-    
-#     y = 0
-    
-#     jarak_dicari = z
-
-#     for i in range(len(N)) : # pada layer i+1
-#         if N[i] == 0 : #berhenti jika tidak ada lilitan pada layer selanjutnya
-#             break
-#         for j in range(N[i]//2) : # pada lilitan ke-j
-#             jarak_lilitan_ke_pusat = jarak_pusat(N, j, i) # jarak lilitan ke-j dari pusat
-#             z = jarak_dicari - jarak_lilitan_ke_pusat #untuk posisi B (yang dicari) dan lilitan j di bagian yang sama relatif terhadap pusat
-#             z_sebelah = jarak_dicari + jarak_pusat # untuk posisi B berbeda
-#             y += B(N,z, i) # B akibat lilitan pada jarak z
-#             y += B(N,z_sebelah, i) # B akibat lilitan pada jarak z_sebelah
-#         if N[i] % 2 != 0 : #untuk kasus ganjil, pada posisi tengah terhitung dua kali
-#             y -= B(N, jarak_dicari ,i)
-#     return y
 
 def B_total(N, z) : # Nilai B total pada jarak z dari pusat, dengan konfigurasi N
     y = 0
@@ -159,4 +156,3 @@ def U(N,x) :
 def F(N,x,dx = 0.0001) :
     y = U(N,x) - U(N, x+dx)
     return y/dx
-    

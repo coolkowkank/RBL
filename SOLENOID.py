@@ -46,9 +46,7 @@ def run(a) : # memvariasikan kombinasi
         return;
     return a
 
-def jumlah_kombinasi(x,y) : 
-# mencari jumlah kombinasi yang mungkin, jika lilitan maksimum per layer 
-# adalah x, dan jumlah layer maksimum adalah y
+def jumlah_kombinasi(x,y) : # mencari jumlah kombinasi maksimum jika lilitan maksimum per layer adalah x, dan jumlah layer maksimum adalah y
     a = [0 for i in range(y)]
     y = 0
     while True :
@@ -61,7 +59,7 @@ def jumlah_kombinasi(x,y) :
         except :
             print(y)
             break
-        y += 1            
+        y += 1       
 
 def l(N): # panjang kawat
     global R
@@ -132,7 +130,7 @@ def flux(N,z,no_layer,x) : # flux(dengan luas A) di posisi z, pada kombinasi N d
     elif z >= x :
         Ao = pi * R[no_layer]**2
         A_gap_udara = Ao - Ap
-        y = B(N,z) * (Ap * Up +Ao)
+        y = B_total(N,z) * (Ap * Up +Ao)
     return y
 
 def flux_total(N,x) : #flux total pada konfigurasi N, ketika plunger berjarak x dari pusat

@@ -124,14 +124,11 @@ def B_total(N, z) : # Nilai B total pada jarak z dari pusat, dengan konfigurasi 
 def flux(N,z,no_layer,x) : # flux(dengan luas A) di posisi z, pada kombinasi N dan plunger di x 
     # note : z dihitung berdasarkan jarak lilitan dari pusat
     global Ap, R, Up
+    Ao = pi * R[no_layer]**2
     if z < x :
-        A_gap_udara = A_sol(no_layer)
-        y = B_total(N,z) * A_gap_udara
+        return B_total(N,z) * Ao
     elif z >= x :
-        Ao = pi * R[no_layer]**2
-        A_gap_udara = Ao - Ap
-        y = B_total(N,z) * (Ap * Up +Ao)
-    return y
+        return B_total(N,z) * (Ap * (Up-1) +Ao)
 
 def flux_total(N,x) : #flux total pada konfigurasi N, ketika plunger berjarak x dari pusat
     y = 0

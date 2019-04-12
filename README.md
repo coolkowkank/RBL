@@ -119,11 +119,12 @@ def jumlah_kombinasi(x,y) :
 ```
 
 Sebagai contoh,
-input :
+
+Input :
 ```python
 jumlah_kombinasi(100,3)
 ```
-output :
+Output :
 ```python
 176850
 ```

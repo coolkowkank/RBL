@@ -73,17 +73,14 @@ def l(N): # panjang kawat
 def R_hambatan(N): # hambatan
     global R_batt
     global resistivity, A_kawat
-    y = resistivity * l(N) / A_kawat
-    return y + R_batt
+    return resistivity * l(N) / A_kawat + R_batt
 
 def l_sol(N,no_layer): #panjang solenoid pada layer tertentu
-    y = N[no_layer] * r_kawat * 2
-    return y
+    return N[no_layer] * r_kawat * 2
 
 def A_sol(no_layer): # luas solenoid pada layer tertentu
     global R
-    y = pi * R[no_layer]**2
-    return y
+    return pi * R[no_layer]**2
 
 def I_arus(N,t = 'tunak') : # arus listrik
     global V
@@ -95,9 +92,7 @@ def I_arus(N,t = 'tunak') : # arus listrik
 def B(N,z,no_layer,t = 'tunak') : # medan pada jarak z dari kawat lingkaran
     # no_layer menentukan jari2
     global Uo, R 
-    denominator = 2 * (R[no_layer]**2 + z**2)**(3/2)
-    y = Uo * I_arus(N,t) * R[no_layer]**2 / (denominator)
-    return y
+    return Uo * I_arus(N,t) * R[no_layer]**2 / (2 * (R[no_layer]**2 + z**2)**(3/2))
 
 def jarak_pusat(N, no_lilitan, no_layer) : # jarak lilitan ke i dari pusat, no_lilitan : 0, 1, 2, 3, 4 ....
     if N[no_layer] % 2 == 0 : # kasus genap

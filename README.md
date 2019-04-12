@@ -122,9 +122,21 @@ Sebagai contoh,
 
 Input :
 ```python
-jumlah_kombinasi(100,3)
+jumlah_kombinasi(2,3)
 ```
 Output :
 ```python
-176850
+9
+```
+Terdapat 9 kombinasi yang mungkin, yaitu
+```
+[1, 0, 0]
+[2, 0, 0]
+[1, 1, 0]
+[2, 1, 0]
+[2, 2, 0]
+[1, 1, 1]
+[2, 1, 1]
+[2, 2, 1]
+[2, 2, 2]
 ```

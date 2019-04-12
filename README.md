@@ -100,7 +100,9 @@ nilai indeks ke-0 tidak menjadi 1, karena lilitan ke-n tidak mungkin < lilitan k
  Untuk mencari berapa jumlah kombinasi yang bisa didapatkan dengan jumlah lilitan maksimum per layer adalah x, dan jumlah layer maksimum adalah y, dapat digunakan fungsi berikut 
  
 ```python
-def jumlah_kombinasi(x,y) : # mencari jumlah kombinasi maksimum jika lilitan maksimum per layer adalah x, dan jumlah layer maksimum adalah y
+def jumlah_kombinasi(x,y) : 
+# mencari jumlah kombinasi maksimum jika lilitan maksimum per layer 
+# adalah x, dan jumlah layer maksimum adalah y
     a = [0 for i in range(y)]
     y = 0
     while True :

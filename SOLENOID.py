@@ -46,8 +46,8 @@ def run(a) : # memvariasikan kombinasi
         return;
     return a
 
-def jumlah_kombinasi(x) : # mencari jumlah kombinasi maksimum jika lilitan maksimum per layer adalah x
-    a = [0,0,0]
+def jumlah_kombinasi(x,y) : # mencari jumlah kombinasi maksimum jika lilitan maksimum per layer adalah x, dan jumlah layer maksimum adalah y
+    a = [0 for i in range(y)]
     y = 0
     while True :
         a[0] += 1
@@ -59,7 +59,7 @@ def jumlah_kombinasi(x) : # mencari jumlah kombinasi maksimum jika lilitan maksi
         except :
             print(y)
             break
-        y += 1       
+        y += 1             
 
 def l(N): # panjang kawat
     global R

@@ -123,15 +123,6 @@ def jumlah_luas(N, z) : # jumlah lilitan kawat pada jarak z (dijumlahkan vertika
                 n += 1
     return pi * y , n #jumlah_luas(N,z)[0] = jumlah luas, jumlah_luas(N,z)[1] = banyak lilitan
     
-# def jumlah_luas(N,n): #jumlah luas secara vertikal dengan n sebagai jumlah lilitan
-#     global r_kawat,Ro
-#     r = r_kawat
-#     n = jumlah_lilitan_vertikal(N, z) - 1
-#     if n < 0 :
-#         return 0
-#     # kemudian dengan menggunakan penjumlahan bilangan natural berpangkat
-#     return pi*(Ro**2 + 4/3 * n**3 * r**2 + n**2 * (2*r*Ro + r**2) + n(Ro**2 + 2*r*Ro + 2/3 * r**2))
-    
 def jarak_pusat(N, no_lilitan, no_layer) : # jarak lilitan ke i dari pusat, no_lilitan : 0, 1, 2, 3, 4 ....
     if N[no_layer] % 2 == 0 : # kasus genap
         posisi_yang_dicari = (no_lilitan + 1 -0.5) * 2 * pi * r_kawat
@@ -163,43 +154,6 @@ def B_total(N, z) : # Nilai B total pada jarak z dari pusat, dengan konfigurasi 
             y -= B(N, jarak_dicari ,i)
     return y
 
-# def B_total(N, z) : # Nilai B total pada jarak z dari pusat, dengan konfigurasi N
-#     y = 0
-#     for i in range(len(N)) :
-#         if N[i] == 0 :
-#             break
-#         for j in range(N[i]) :
-#             if N[i]%2 != 0 : #kasus ganjil
-#                 xo = -(N[i]//2 *2 * r_kawat)
-#             elif N[i]%2 == 0 : #kasus genap
-#                 xo  = -((N[i]/2 -0.5) *2 *r_kawat)
-#             x = xo + j*2*r_kawat
-#             selisih_jarak = x - z
-#             y += B(N, selisih_jarak, i)
-#     return y
-
-# def flux(N,z,no_layer,x) : # flux(dengan luas A) di posisi z, pada kombinasi N dan plunger di x 
-#     # note : z dihitung berdasarkan jarak lilitan dari pusat
-#     global Ap, R, Up
-#     Ao = pi * R[no_layer]**2
-#     if z < x :
-#         return B_total(N,z) * Ao
-#     elif z >= x :
-#         return B_total(N,z) * (Ap * (Up-1) +Ao)
-
-# def flux_total(N,x) : #flux total pada konfigurasi N, ketika plunger berjarak x dari pusat
-#     y = 0
-#     for i in range(len(N)) : # kalkulasi pada layer i, sebanyak jumlah layer
-#         if N[i] == 0 :
-#             break
-#         for j in range(N[i]) : # kalkulasi pada layer i, sebanyak jumlah lilitan
-#             if N[i]%2 != 0 : #kasus ganjil
-#                 Zo = -(N[i]//2 *2 * r_kawat)
-#             elif N[i]%2 == 0 : #kasus genap
-#                 Zo  = -((N[i]/2 -0.5) *2 *r_kawat)
-#             z = Zo + j * 2 * r_kawat 
-#             y += flux(N,z,i,x)
-#     return y
 
 def flux(N,z,x) : # flux pada posisi z kanan dan kiri
     # note : z dihitung berdasarkan jarak lilitan dari pusat (menghitung setengah bagian solenoid)
